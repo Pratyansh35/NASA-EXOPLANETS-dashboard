@@ -2,17 +2,17 @@ const axios = require("axios");
 const launchesdatabase = require("./launches.mongo");
 const Planets = require("./planets.mongo");
 
-const launch = {
-  // comments are showing exact name of obj in SpaceX api
-  flightNumber: 100, // flight_number
-  mission: "kepler Exploration X", // name
-  rocket: "Explorer IS1", // rocket.name
-  launchDate: new Date("December 27, 2030"), // date_local
-  target: "Kepler-1652 b", // NA
-  customers: ["Pratyansh", "NASA"], // payload.customers
-  upcoming: true, // upcomming
-  success: true, // success
-};
+// const launch = {
+//   // comments are showing exact name of obj in SpaceX api
+//   flightNumber: 100, // flight_number
+//   mission: "kepler Exploration X", // name
+//   rocket: "Explorer IS1", // rocket.name
+//   launchDate: new Date("December 27, 2030"), // date_local
+//   target: "Kepler-1652 b", // NA
+//   customers: ["Pratyansh", "NASA"], // payload.customers
+//   upcoming: true, // upcomming
+//   success: true, // success
+// };
 
 const SPACEX_API_URL = "https://api.spacexdata.com/v4/launches/query";
 //launches.set(launch.flightNumber,launch);
@@ -94,12 +94,12 @@ async function getLatestFlightno() {
   return latestflight.flightNumber;
 }
 
-async function getAllLaunches() {
+async function getAllLaunches(skip, limit) {
   return await launchesdatabase
-  .find({}, 
-    { _id: 0, __v: 0 })
-    //.skip(20)
-    //.limit(50);
+  .find({}, { _id: 0, __v: 0 })
+  .sort({ flightNumber: 1  }) // 1 or ascending -1 or descending
+    .skip(skip)
+    .limit(limit);
 }
 
 async function saveLaunch(launch) {

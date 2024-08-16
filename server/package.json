@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "watch": "nodemon src/server.js",
-    "start": "SET PORT=8000 && node src/server.js",
+    "start": "SET PORT=8088 && node src/server.js",
     "test": "jest --detectOpenHandles",
     "test-watch": "jest --watchAll",
     "cluster": "pm2 start src/server.js -i max"
@@ -13,12 +13,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "jest":{
+  "jest": {
     "testEnvironment": "node"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "csv-parse": "^5.5.3",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "pm2": "^5.3.0",
